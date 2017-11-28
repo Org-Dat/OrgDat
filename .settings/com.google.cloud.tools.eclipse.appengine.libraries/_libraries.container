@@ -1,1 +1,8 @@
+<<<<<<< HEAD
 []
+=======
+[
+  "appengine-endpoints",
+  "objectify"
+]
+>>>>>>> branch 'master' of https://github.com/Org-Dat/OrgDat.git
