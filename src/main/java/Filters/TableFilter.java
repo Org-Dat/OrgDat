@@ -54,13 +54,17 @@ public class TableFilter extends HttpServlet implements Filter {
 						throw new Exception();
 					}
 				}
-				else if(role.contains("owner")) {
+				else if(role.contains("owner") || role.equals("can/write")) {
 					chain.doFilter(req, res);
 				}else {
 					throw new Exception();
 				}
-			}else if(role.contains("owner")) {
-				chain.doFilter(req, res);
+			}else if(role.equals("can/write")) {
+				if(request.getRequestURI().contains("/renameTable")) {
+					chain.doFilter(req, res);
+				}else {
+					
+				}				
 			}else {
 				throw new Exception();
 			}

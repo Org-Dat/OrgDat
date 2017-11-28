@@ -1,6 +1,6 @@
 package Filters;
 import java.sql.*;
-
+import java.util.*;
 import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -65,6 +65,18 @@ public class RoleChecker extends HttpServlet {
 		}  	
     }
     
+    public String createJunk(int count){
+      	Random rand = new Random();
+      	StringBuilder s = new StringBuilder("");
+      	String characters = "abcdefghijklmnopqrstuvwxyz";
+      	characters = characters + characters.toUpperCase();
+      	characters = characters+"_1234567890";
+       	while(count >= s.length()){
+      		int randomNumber = rand.nextInt(63);
+      		s.append(characters.charAt(randomNumber));
+      	}
+      	return s.toString();
+      }
     public long getUserId(Cookie[] cookies) {
 		ServletContext context=getServletContext(); 
 		for(Cookie cookie : cookies) {

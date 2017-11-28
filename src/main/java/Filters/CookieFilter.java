@@ -9,6 +9,7 @@ public class CookieFilter extends HttpServlet implements Filter {
 	public long user_id;
 	protected DatabaseConnection dc;
 	protected PreparedStatement stmt = null; 
+	protected RoleChecker rc = null;
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 		
@@ -20,12 +21,12 @@ public class CookieFilter extends HttpServlet implements Filter {
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
 			HttpServletRequest request = (HttpServletRequest) req;
 			HttpServletResponse response = (HttpServletResponse) res;
+			rc = new RoleChecker();
 			Cookie[] cookies = request.getCookies();
 			if(cookies == null || cookies.length == 1) {
 				response.sendRedirect("/JSP/landingPage.jsp");
 			}
 			String iambdt = "";
-		//	String s = new String("");
 			try {
 				dc = new DatabaseConnection("Orgdat");				
 				for(Cookie cookie : cookies) {
@@ -49,6 +50,7 @@ public class CookieFilter extends HttpServlet implements Filter {
 				while(rs.next()) {
 					 user_id = rs.getInt(1);
 				}
+				
 				ServletContext context=getServletContext();  
 				context.setAttribute(iambdt, user_id);
 				chain.doFilter(req, res);
@@ -62,7 +64,7 @@ public class CookieFilter extends HttpServlet implements Filter {
 		  String query = "update cookie_management set cookie=? where cookie=?";
 		   try {			
 			stmt = (dc.conn).prepareStatement(query);
-			stmt.setString(1, createCookie());
+			stmt.setString(1, rc.createJunk(20));
 			stmt.setString(2, iambdt);
 			stmt.executeUpdate();
 		} catch (SQLException e) {
@@ -70,10 +72,5 @@ public class CookieFilter extends HttpServlet implements Filter {
 		}
 		   
 	}
-	private String createCookie() {
-		String cookie = "";
-		
-		return cookie;
-	}   
 }
 	
