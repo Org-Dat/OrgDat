@@ -14,7 +14,12 @@ public class HelloAppEngine extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) 
       throws IOException {
+<<<<<<< HEAD
       
+=======
+	  StringBuilder s = new StringBuilder("");
+	  
+>>>>>>> branch 'master' of https://github.com/Org-Dat/OrgDat.git
     response.setContentType("text/plain");
     response.setCharacterEncoding("UTF-8");
 

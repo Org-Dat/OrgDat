@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
+<<<<<<< HEAD
 	<name>JavaProject</name>
+=======
+<<<<<<< HEAD
+	<name>OrgDat</name>
+=======
+	<name>Org-Dat</name>
+>>>>>>> branch 'master' of https://github.com/Org-Dat/OrgDat.git
+>>>>>>> branch 'master' of https://github.com/Org-Dat/OrgDat.git
 	<comment></comment>
 	<projects>
 	</projects>
